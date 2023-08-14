@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     "notifications",
     "payments",
     "dashboard",
+    "plan",
+
 ]
 
 APPEND_SLASH = True

@@ -18,6 +18,8 @@ urlpatterns = [
     path("api/operations/", include("operations.urls")),
     path("api/payments/", include("payments.urls")),
     path("api/dashboard/", include("dashboard.urls")),
+    path("api/plan/", include("plan.urls")),
+
     # path("api/payments/", Payment)
 ]
 
