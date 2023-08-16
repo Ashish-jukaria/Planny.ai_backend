@@ -1,0 +1,13 @@
+<!-- event_form.html -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ event_form.as_p }}
+    <button type="submit">Create Event</button>
+</form>
+
+<!-- event_type_form.html -->
+<form method="post">
+    {% csrf_token %}
+    {{ event_type_form.as_p }}
+    <button type="submit">Create Event Type</button>
+</form>
