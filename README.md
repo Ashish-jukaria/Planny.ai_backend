@@ -6,7 +6,7 @@
 
 `git clone git@github.com:phurti-grocery/aiktech-backend.git`
 
-#### Create a vrtualenv using following and give name as env
+#### Create a virtualenv using following and give name as env
 
 `virtualenv env`
 
