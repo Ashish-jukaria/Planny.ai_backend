@@ -19,4 +19,4 @@ class Category(models.Model):
     route = models.SlugField(unique=True)
 
     def __str__(self):
-        return self.title
+        return self.titled 
