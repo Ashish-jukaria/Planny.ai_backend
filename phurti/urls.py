@@ -19,7 +19,8 @@ urlpatterns = [
     path("api/payments/", include("payments.urls")),
     path("api/dashboard/", include("dashboard.urls")),
     path("api/plan/", include("plan.urls")),
-
+    #service prompt url
+    path("service/",include("plan.urls")),
     # path("api/payments/", Payment)
 ]
 
