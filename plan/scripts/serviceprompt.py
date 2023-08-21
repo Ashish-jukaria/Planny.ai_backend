@@ -31,3 +31,7 @@ class ServicePrompt:
                 return "No category description found for the prompt."
 
         return "No prompt found in the database."
+
+
+ # url to hit the service
+ # http://127.0.0.1:8000/service/prompt/?key=1&category=some_category&plan_type=typeA&budget=100.

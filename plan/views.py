@@ -20,7 +20,7 @@ def gpt_response_view(request):
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from plan.models import Prompts, Category
-from scripts import serviceprompt
+from .scripts.serviceprompt import ServicePrompt
 def get_prompt_view(request):
     if request.method == 'GET':
         key = request.GET.get('key')
@@ -29,8 +29,7 @@ def get_prompt_view(request):
         budget = request.GET.get('budget')
 
         # Create an instance of ServicePrompt with a valid database connection
-        service = serviceprompt()
-
+        service = ServicePrompt(db_connection)
         formatted_prompt = service.get_prompt(key, category, plan_type, budget)
         return JsonResponse({'prompt': formatted_prompt})
 
