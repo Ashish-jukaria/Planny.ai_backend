@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "payments",
     "dashboard",
     "plan",
+    "openai"
 
 ]
 
@@ -142,6 +143,16 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
+    ],
+      "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "plan.utils.CamelCaseJSONRenderer",  
+    
+    ],
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+        "plan.utils.CamelCaseJSONParser",  
+    
     ],
 }
 

@@ -4,6 +4,12 @@ from .utils import generate_gpt_response
 from rest_framework import generics
 from .models import *
 from .serializers import *
+from django.shortcuts import render
+import os
+from dotenv import load_dotenv
+load_dotenv()
+import openai
+from .utils import *
 
 
 @csrf_exempt
@@ -36,6 +42,8 @@ class SubscriptionRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView
 class PlansListCreateView(generics.ListCreateAPIView):
     queryset = Plans.objects.all()
     serializer_class = PlansSerializer
+    renderer_classes = [CamelCaseJSONRenderer]
+    parser_classes = [CamelCaseJSONParser]
 
 
 class PlansRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
