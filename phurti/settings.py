@@ -85,6 +85,8 @@ MIDDLEWARE = [
     # tenant middleware
     "phurti.middleware.tenant_middleware.TenantMiddleware",
     "phurti.middleware.user_middleware.SetAuthUserModelMiddleware",
+    "phurti.middleware.case_middleware.CamelSnakeMiddleware",
+
 ]
 
 ROOT_URLCONF = "phurti.urls"
