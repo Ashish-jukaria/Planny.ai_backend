@@ -1,5 +1,6 @@
 from django.db import models
 
+
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -64,6 +65,26 @@ class Itinerary(models.Model):
     description = models.TextField()
     is_active = models.BooleanField(default=True)
     type = models.ForeignKey(ItineraryTypes, on_delete=models.CASCADE)
+
+
+class Prompts(models.Model):
+    key = models.IntegerField(unique=True)
+    header = models.CharField(max_length=100)
+    format = models.JSONField()
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.key)  
+    class Meta:
+        verbose_name_plural = "Prompts"
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    image = models.ImageField(upload_to='category_images/')  
+    route = models.SlugField(unique=True)
+
 
     def __str__(self):
         return self.title

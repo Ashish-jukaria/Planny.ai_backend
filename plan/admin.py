@@ -7,3 +7,6 @@ admin.site.register(Events)
 admin.site.register(Subscriptions)
 admin.site.register(ItineraryTypes)
 admin.site.register(Itinerary)
+admin.site.register(Category)
+admin.site.register(Prompts)
+
