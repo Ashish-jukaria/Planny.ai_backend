@@ -4,7 +4,6 @@ from .views import *
 
 urlpatterns = [
     path("gpt-response/", gpt_response_view, name="gpt_response"),
-    path("gpt-response/", gpt_response_view, name="gpt_response"),
     path(
         "subscriptions/",
         SubscriptionListCreateView.as_view(),
@@ -37,4 +36,11 @@ urlpatterns = [
         ItineraryRetrieveUpdateDeleteView.as_view(),
         name="itinerary-retrieve-update-delete",
     ),
+  path('categories/', CategoryList.as_view(), name='category-list'),
+  path('categories/<int:pk>/', CategoryDetail.as_view(), name='category-detail'),
 ]
+
+
+ 
+
+

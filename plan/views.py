@@ -4,6 +4,10 @@ from .utils import generate_gpt_response
 from rest_framework import generics
 from .models import *
 from .serializers import *
+from rest_framework import viewsets
+from .models import Category
+from .serializers import CategorySerializer
+
 
 
 @csrf_exempt
@@ -21,6 +25,7 @@ def gpt_response_view(request):
             )
     else:
         return JsonResponse({"error": "Invalid request method"})
+
 
 
 class SubscriptionListCreateView(generics.ListCreateAPIView):
@@ -61,3 +66,13 @@ class ItineraryListCreateView(generics.ListCreateAPIView):
 class ItineraryRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Itinerary.objects.all()
     serializer_class = ItinerarySerializer
+=======
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
