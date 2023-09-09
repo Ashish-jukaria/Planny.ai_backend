@@ -11,6 +11,7 @@ from .serializers import CategorySerializer
 def gpt_response_view(request):
     if request.method == "POST":
         prompt_text = request.POST.get("prompt_text")
+        print(prompt_text)
         response_text = generate_gpt_response(prompt_text)
         if response_text:
             return JsonResponse({"response": response_text})
