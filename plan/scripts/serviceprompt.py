@@ -15,6 +15,9 @@ class ServicePrompt:
         return None
 
     def get_prompt(self, key, category, plan_type, budget):
+        prompt="""This format have some keys and understand those needs and and generate the if you cant understand by values understand
+by the comment (starts and end with a `#`) as what to expect/generate there. consider those comments as requirement/prompts.
+Generate the response"""
         prompt_data = self.fetch_prompt_data(key)
         if prompt_data:
             response_format = prompt_data.format
@@ -22,7 +25,7 @@ class ServicePrompt:
 
             description = self.fetch_category_description(header)
             if description is not None:
-                formatted_prompt = f"{description} {response_format}"
+                formatted_prompt = f"{description}  {response_format} \n{prompt}"
                 formatted_prompt = formatted_prompt.replace("\r\n", " ")
 
                 formatted_prompt = formatted_prompt.replace("{key}", key)
