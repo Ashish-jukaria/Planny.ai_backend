@@ -1,39 +1,34 @@
-version: '3.2'
+version: '3.8' # Use the latest Compose version if available
+
 services:
   web:
-    build: .
-    container_name: planny-local
-    command: python manage.py runserver 0.0.0.0:8000
+    build: . # Build the Docker image from the current directory (where the Dockerfile is)
+    container_name: planny-local # Name for the container
+    command: python manage.py runserver 0.0.0.0:8000 # Command to start your Django application
     depends_on:
       postgres:
-        condition: service_healthy
+        condition: service_healthy # Wait until the PostgreSQL service is healthy before starting
     volumes:
-      - .:/usr/src/app
-    env_file: .env
+      - .:/usr/src/app # Mount the project directory into the container
+    env_file: .env # Load environment variables from a file
     environment:
-      DB_URL_PRODUCTION: postgres
-      DB_NAME: planny
-      DB_USER: planny
-      DB_PASSWORD: password
-    profiles:
-      - local
+      DJANGO_SETTINGS_MODULE: planny.settings # Set the Django settings module
+      DB_URL_PRODUCTION: postgres://planny:password@postgres:5432/planny # Database URL
     ports:
-      - '8000:8000'
+      - '8000:8000' # Map port 8000 in the container to port 8000 on the host
 
   postgres:
-    image: postgres:13-alpine
-    container_name: planny-postgres
+    image: postgres:13-alpine # Use the official PostgreSQL 13 image
+    container_name: planny-postgres # Name for the PostgreSQL container
     environment:
-      POSTGRES_USER: planny
-      POSTGRES_DB: planny
-      POSTGRES_PASSWORD: password
-    profiles:
-      - local
+      POSTGRES_USER: planny # PostgreSQL username
+      POSTGRES_DB: planny # PostgreSQL database name
+      POSTGRES_PASSWORD: password # PostgreSQL password
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U planny"] # Adjust the username as per your PostgreSQL setup
+      test: ["CMD-SHELL", "pg_isready -U planny"] # Check PostgreSQL health
       interval: 5s
       timeout: 5s
       retries: 5
       start_period: 10s
     ports:
-      - '5432:5432'
+      - '5433:5432' # Map port 5432 in the container to port 5432 on the host
