@@ -2,7 +2,7 @@ version: '3.2'
 services:
   web:
     build: .
-    container_name: phurti-local
+    container_name: planny-local
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       postgres:
@@ -12,8 +12,8 @@ services:
     env_file: .env
     environment:
       DB_URL_PRODUCTION: postgres
-      DB_NAME: phurti
-      DB_USER: phurti
+      DB_NAME: planny
+      DB_USER: planny
       DB_PASSWORD: password
     profiles:
       - local
@@ -22,15 +22,15 @@ services:
 
   postgres:
     image: postgres:13-alpine
-    container_name: phurti-postgres
+    container_name: planny-postgres
     environment:
-      POSTGRES_USER: phurti
-      POSTGRES_DB: phurti
+      POSTGRES_USER: planny
+      POSTGRES_DB: planny
       POSTGRES_PASSWORD: password
     profiles:
       - local
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U phurti']
+      test: ["CMD-SHELL", "pg_isready -U planny"] # Adjust the username as per your PostgreSQL setup
       interval: 5s
       timeout: 5s
       retries: 5
