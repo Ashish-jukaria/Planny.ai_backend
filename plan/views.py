@@ -21,16 +21,18 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from plan.models import Prompts, Category
 from .scripts.serviceprompt import ServicePrompt
+import sqlite3
 def get_prompt_view(request):
     if request.method == 'GET':
         key = request.GET.get('key')
         category = request.GET.get('category')
         plan_type = request.GET.get('plan_type')
         budget = request.GET.get('budget')
-
+        db_connection=sqlite3.connect(".db")
         # Create an instance of ServicePrompt with a valid database connection
         service = ServicePrompt(db_connection)
         formatted_prompt = service.get_prompt(key, category, plan_type, budget)
+        db_connection.close()
         return JsonResponse({'prompt': formatted_prompt})
 
     return JsonResponse({'error': 'Invalid request method'}, status=400)
