@@ -4,6 +4,8 @@ from .views import *
 
 urlpatterns = [
     path("gpt-response/", gpt_response_view, name="gpt_response"),
+    path('prompt/',get_prompt_view,name="get_prompt"),
+
     path(
         "subscriptions/",
         SubscriptionListCreateView.as_view(),
