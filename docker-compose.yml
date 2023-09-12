@@ -1,39 +1,34 @@
-version: '3.2'
+version: '3.8' 
+
 services:
   web:
-    build: .
-    container_name: phurti-local
-    command: python manage.py runserver 0.0.0.0:8000
+    build: . 
+    container_name: planny-local 
+    command: python manage.py runserver 0.0.0.0:8000 
     depends_on:
       postgres:
-        condition: service_healthy
+        condition: service_healthy 
     volumes:
-      - .:/usr/src/app
-    env_file: .env
+      - .:/usr/src/app 
+    env_file: .env 
     environment:
-      DB_URL_PRODUCTION: postgres
-      DB_NAME: phurti
-      DB_USER: phurti
-      DB_PASSWORD: password
-    profiles:
-      - local
+      DJANGO_SETTINGS_MODULE: planny.settings 
+      DB_URL_PRODUCTION: postgres://planny:password@postgres:5432/planny 
     ports:
-      - '8000:8000'
+      - '8000:8000' 
 
   postgres:
-    image: postgres:13-alpine
-    container_name: phurti-postgres
+    image: postgres:13-alpine 
+    container_name: planny-postgres 
     environment:
-      POSTGRES_USER: phurti
-      POSTGRES_DB: phurti
-      POSTGRES_PASSWORD: password
-    profiles:
-      - local
+      POSTGRES_USER: planny 
+      POSTGRES_DB: planny 
+      POSTGRES_PASSWORD: password 
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U phurti']
+      test: ["CMD-SHELL", "pg_isready -U planny"] 
       interval: 5s
       timeout: 5s
       retries: 5
       start_period: 10s
     ports:
-      - '5432:5432'
+      - '5433:5432' # Map port 5433 in the container to port 5432 on the host
