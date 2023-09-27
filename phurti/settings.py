@@ -19,7 +19,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from shop.constants import RAZORPAY
 
-load_dotenv(find_dotenv())
+
+load_dotenv(find_dotenv(".env.production"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
