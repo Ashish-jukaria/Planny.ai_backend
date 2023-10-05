@@ -73,6 +73,7 @@ APPEND_SLASH = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # LocaleMiddleware placed here
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     "phurti.middleware.user_middleware.SetAuthUserModelMiddleware",
     "phurti.middleware.case_middleware.CamelSnakeMiddleware",
 ]
+
 
 ROOT_URLCONF = "phurti.urls"
 
@@ -501,3 +503,15 @@ sentry_sdk.init(
 
 COMPANY_URL = os.environ.get("COMPANY_URL")
 DEFAULT_TENANT_ID = os.environ.get("DEFAULT_TENANT_ID")
+
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    # Add more languages as needed
+]
+
+# settings.py
+
+LANGUAGE_COOKIE_NAME = 'django_language'
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
