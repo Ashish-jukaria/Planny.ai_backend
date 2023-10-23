@@ -54,9 +54,9 @@ class Registration(serializers.ModelSerializer):
             name=self.validated_data["name"],
             phone_number=self.validated_data["phone_number"],
             email=email,
-            role=self.validated_data["role"],
-            inventory=self.validated_data["inventory"],
-            device_id=self.validated_data["device_id"],
+            # role=self.validated_data["role"],
+            # inventory=self.validated_data["inventory"],
+            # device_id=self.validated_data["device_id"],
         )
         user.save()
         return user

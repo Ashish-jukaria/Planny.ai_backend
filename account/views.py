@@ -58,7 +58,7 @@ def sendOTP(request, **kwargs):
 def verifyOTP(request, **kwargs):
     if request.method == "GET":
         PHONE = kwargs.get("phone")
-        SESSION_ID = kwargs.get("session_id")
+        #  SESSION_ID = kwargs.get("session_id")
         OTP = kwargs.get("otp")
         response = {"data": {"Details": "OTP Matched"}}
         if response["data"]["Details"] == "OTP Matched":
@@ -76,7 +76,7 @@ def verifyOTP(request, **kwargs):
 
     elif request.method == "POST":
         PHONE = kwargs.get("phone")
-        SESSION_ID = kwargs.get("session_id")
+        # SESSION_ID = kwargs.get("session_id")
         OTP = kwargs.get("otp")
         response = OTPverify(PHONE, SESSION_ID, OTP)
         if response["data"]["Details"] == "OTP Matched":

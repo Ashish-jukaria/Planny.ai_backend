@@ -16,7 +16,7 @@ urlpatterns = [
     path("register/", RegistrationView.as_view(), name="register"),  # Registration View
     path("sendotp/<str:phone>/", sendOTP, name="sendOTP"),  # Send OTP View
     path(
-        "verifyotp/<str:phone>/<str:session_id>/<str:otp>/", verifyOTP, name="verifyOTP"
+        "verifyotp/<str:phone>/<str:otp>/", verifyOTP, name="verifyOTP"
     ),  # Verify OTP View
     path(
         "add_alternative/", AlternativeUpdate.as_view(), name="AlternativeUpdate"

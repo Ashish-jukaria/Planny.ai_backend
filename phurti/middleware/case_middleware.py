@@ -2,12 +2,13 @@ import re
 import json
 
 class CamelSnakeMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
+    def _init_(self):
+        # No need to take any arguments in the constructor
+        pass
 
-    def __call__(self, request):
+    def _call_(self, request, get_response):
         # Convert incoming JSON keys from camelCase to snake_case
-        if request.method in ['POST', 'PUT']:
+        if request.method in ['POST', 'PUT'] and 'application/json' in request.content_type:
             try:
                 data = json.loads(request.body)
                 converted_data = self.convert_keys(data, self.camel_to_snake)
@@ -15,7 +16,7 @@ class CamelSnakeMiddleware:
             except json.JSONDecodeError:
                 pass
 
-        response = self.get_response(request)
+        response = get_response(request)
 
         # Convert outgoing JSON keys from snake_case to camelCase
         if 'application/json' in response.get('Content-Type', ''):

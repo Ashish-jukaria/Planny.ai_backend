@@ -67,7 +67,7 @@ class ItineraryListCreateView(generics.ListCreateAPIView):
 class ItineraryRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Itinerary.objects.all()
     serializer_class = ItinerarySerializer
-=======
+
 class CategoryList(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
